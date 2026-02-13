@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash - Status bar with mpc status, volume, battery and time
 while true; do
     # Get song info (Artist - Title)
     SONG=$(mpc current -f "[%artist% - ]%title%")
