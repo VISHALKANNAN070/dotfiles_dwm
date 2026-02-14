@@ -71,7 +71,7 @@ static const char *clipcmd[] = { "clipmenu", NULL };
 static const char *mutecmd[] = { "amixer", "-q", "set", "Master", "toggle", NULL };
 static const char *voldown[] = { "amixer", "-q", "set", "Master", "5%-", "unmute", NULL };
 static const char *volup[]   = { "amixer", "-q", "set", "Master", "5%+", "unmute", NULL };
-
+static const char *powermenucmd[] = { "/home/vishal/dotfiles_dwm/powermenu.sh", NULL };
 /* Brightness Control */
 static const char *bdown[]   = { "brightnessctl", "set", "5%-", NULL };
 static const char *bup[]     = { "brightnessctl", "set", "5%+", NULL };
@@ -82,8 +82,10 @@ static const Key keys[] = {
     { MODKEY,                       XK_space,  spawn,          {.v = musictoggle } },
     { MODKEY,                       XK_d,      spawn,          {.v = dmenucmd } },
     { MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
-    { MODKEY,                       XK_Right,      focusstack,     {.i = +1 } },
-    { MODKEY,                       XK_Left,      focusstack,     {.i = -1 } },
+    { MODKEY,                       XK_Right,  focusstack,     {.i = +1 } },
+    { MODKEY,                       XK_Left,   focusstack,     {.i = -1 } },
+    { MODKEY|ShiftMask,             XK_Right,  movestack,      {.i = +1 } },
+    { MODKEY|ShiftMask,             XK_Left,   movestack,      {.i = -1 } },
     { MODKEY,                       XK_i,      incnmaster,     {.i = +1 } },
     { MODKEY,                       XK_o,      incnmaster,     {.i = -1 } },
     { MODKEY,                       XK_Tab,    view,           {0} },
@@ -94,6 +96,7 @@ static const Key keys[] = {
     { MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
     { MODKEY,                       XK_0,      view,           {.ui = ~0 } },
     { MODKEY|ShiftMask,             XK_0,      tag,            {.ui = ~0 } },
+    { Mod1Mask,                     XK_F4,     spawn,          {.v = powermenucmd } },
     TAGKEYS(                        XK_1,                      0)
     TAGKEYS(                        XK_2,                      1)
     TAGKEYS(                        XK_3,                      2)

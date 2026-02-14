@@ -1,13 +1,11 @@
-#!/bin/bash - Status bar with mpc status, volume, battery and time
+#!/bin/bash
 while true; do
-    # Get song info (Artist - Title)
-    SONG=$(mpc current -f "[%artist% - ]%title%")
-    [ -z "$SONG" ] && SONG="Paused"
-
-    VOL=$(amixer get Master | grep -Po '\[\d+%\]' | head -n1 | tr -d '[]%')
+    # Use full paths for binaries
+    SONG=$(/usr/bin/mpc current -f "[%artist% - ]%title%")
+    VOL=$(/usr/bin/amixer get Master | grep -Po '\[\d+%\]' | head -n1 | tr -d '[]%')
     BAT=$(cat /sys/class/power_supply/BAT0/capacity)
     TIME=$(date +"%H:%M")
 
-    xsetroot -name " $SONG | VOL $VOL% | BAT $BAT% | $TIME "
+    /usr/bin/xsetroot -name " $SONG | VOL $VOL% | BAT $BAT% | $TIME "
     sleep 1s
 done
